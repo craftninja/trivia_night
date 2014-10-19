@@ -18,7 +18,6 @@ feature 'User Auth' do
   end
 
   scenario 'User can logout' do
-    pending
     username = 'Branwyn'
     welcome_message = "Welcome to Trivia Night, #{username}"
     visit '/'
