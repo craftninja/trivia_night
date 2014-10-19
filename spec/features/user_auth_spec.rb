@@ -35,7 +35,6 @@ feature 'User Auth' do
   end
 
   scenario 'User can login with registered username and password' do
-    pending
     username = 'Branwyn'
     password = 'password'
     welcome_message = "Welcome to Trivia Night, #{username}"
@@ -52,7 +51,9 @@ feature 'User Auth' do
     click_on 'Log in'
     fill_in 'Username', with: username
     fill_in 'Password', with: password
-    click_on 'Log in'
+    within("form") do
+      click_on 'Log in'
+    end
     expect(page).to have_content(welcome_message)
   end
 
