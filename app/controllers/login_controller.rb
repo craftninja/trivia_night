@@ -13,6 +13,10 @@ class LoginController < ApplicationController
     if user = User.find_by(:username => params[:user][:username]).try(:authenticate, params[:user][:password])
       session[:current_user_id] = user.id
       redirect_to root_url
+    else
+      @user = User.new
+      flash.now[:error] = 'Username / password is invalid'
+      render :new
     end
   end
 

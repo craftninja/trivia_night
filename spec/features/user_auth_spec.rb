@@ -58,19 +58,19 @@ feature 'User Auth' do
   end
 
   scenario 'User cannot login if their username does not exist' do
-    pending
     username = 'Branwyn'
     password = '123456'
     visit '/'
     click_on 'Log in'
     fill_in 'Username', with: username
     fill_in 'Password', with: password
-    click_on 'Log in'
+    within("form") do
+      click_on 'Log in'
+    end
     expect(page).to have_content 'Username / password is invalid'
   end
 
   scenario 'User cannot sign in with an invalid username and/or password' do
-    pending
     username = 'Branwyn'
     password = '123456'
     visit '/'
@@ -85,8 +85,10 @@ feature 'User Auth' do
     click_on 'Log out'
     click_on 'Log in'
     fill_in 'Username', with: username
-    fill_in 'Password', with: password
-    click_on 'Log in'
+    fill_in 'Password', with: 'password'
+    within("form") do
+      click_on 'Log in'
+    end
     expect(page).to have_content 'Username / password is invalid'
   end
 end

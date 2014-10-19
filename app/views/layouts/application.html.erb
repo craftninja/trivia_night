@@ -23,6 +23,13 @@
       </div>
     </div>
   </nav>
+  <% if flash %>
+    <% flash.each do |name, msg| %>
+      <% flash_class = "alert alert-danger" if name == "error" %>
+      <%= content_tag :div, msg, class: flash_class %>
+    <% end %>
+  <% end %>
+
   <%= yield %>
 
 </body>
